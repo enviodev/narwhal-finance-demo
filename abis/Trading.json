@@ -1,0 +1,1376 @@
+[
+  {
+    "inputs": [],
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "target",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "resut",
+        "type": "bool"
+      }
+    ],
+    "name": "Callback",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "CancelOpen",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "closePrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_closeMargin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "int256",
+        "name": "fundingFee",
+        "type": "int256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "rolloverFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "closeFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "afterFee",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "enum CloseType",
+        "name": "s",
+        "type": "uint8"
+      }
+    ],
+    "name": "Close",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "ExecRequestClose",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "status",
+        "type": "bool"
+      }
+    ],
+    "name": "ExecRequestOpen",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint8",
+        "name": "version",
+        "type": "uint8"
+      }
+    ],
+    "name": "Initialized",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "trader",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pairIndex",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "margin",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "long",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint256",
+                "name": "leverage",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "tp",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "sl",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct TradeBase",
+            "name": "base",
+            "type": "tuple"
+          },
+          {
+            "internalType": "uint256",
+            "name": "openPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "lastUpdateTime",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct OpenTrade",
+        "name": "t",
+        "type": "tuple"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "fee",
+        "type": "uint256"
+      }
+    ],
+    "name": "Open",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferStarted",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "previousOwner",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "OwnershipTransferred",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_closeMargin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "requstTime",
+        "type": "uint256"
+      }
+    ],
+    "name": "RequestClose",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "components": [
+          {
+            "internalType": "enum TradeType",
+            "name": "tradeType",
+            "type": "uint8"
+          },
+          {
+            "components": [
+              {
+                "internalType": "address",
+                "name": "trader",
+                "type": "address"
+              },
+              {
+                "internalType": "uint256",
+                "name": "pairIndex",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "margin",
+                "type": "uint256"
+              },
+              {
+                "internalType": "bool",
+                "name": "long",
+                "type": "bool"
+              },
+              {
+                "internalType": "uint256",
+                "name": "leverage",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "tp",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "sl",
+                "type": "uint256"
+              }
+            ],
+            "internalType": "struct TradeBase",
+            "name": "base",
+            "type": "tuple"
+          },
+          {
+            "internalType": "address",
+            "name": "callTarget",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "maxPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "minPrice",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "time",
+            "type": "uint256"
+          }
+        ],
+        "indexed": false,
+        "internalType": "struct OpenRequest",
+        "name": "_request",
+        "type": "tuple"
+      }
+    ],
+    "name": "RequestOpen",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_tradingStorage",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "_usdt",
+        "type": "address"
+      }
+    ],
+    "name": "SetContract",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_forOpen",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_forClose",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_forCallback",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_gasLimit",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetNativeFeeForKeeper",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_liquidationP",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_spreadReductionP",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_maxMarketTradeOpenTime",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_tradeSwitch",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetParams",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "address",
+        "name": "_receiver",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "SetReserve",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "TradeClosed",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "bool",
+        "name": "isAdd",
+        "type": "bool"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "margin",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "leverage",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdateMargin",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "limitPrice",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "sl",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdateOpenRequest",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "tp",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "sl",
+        "type": "uint256"
+      }
+    ],
+    "name": "UpdateTPAndSL",
+    "type": "event"
+  },
+  {
+    "inputs": [],
+    "name": "acceptOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "callbackGasLimit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderId",
+        "type": "uint256"
+      }
+    ],
+    "name": "cancelOpen",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "index",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "closeTrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "feeHelper",
+    "outputs": [
+      {
+        "internalType": "contract IFeeHelper",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "pairIndex",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "position",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "isLong",
+        "type": "bool"
+      }
+    ],
+    "name": "getPriceAfterImpact",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "price",
+        "type": "uint256"
+      }
+    ],
+    "name": "getTradeValue",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "owner",
+        "type": "address"
+      },
+      {
+        "internalType": "contract ITradingStorage",
+        "name": "_storageT",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_usdt",
+        "type": "address"
+      }
+    ],
+    "name": "initialize",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "link",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "liquidationP",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "maxMarketTradeOpenTime",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "nativeForCallback",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "nativeForClose",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "nativeForOpen",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "openTrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "oracle",
+    "outputs": [
+      {
+        "internalType": "contract IOracle",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "owner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pairInfo",
+    "outputs": [
+      {
+        "internalType": "contract IPairInfos",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "pendingOwner",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "renounceOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_closeMargin",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "callTarget",
+        "type": "address"
+      }
+    ],
+    "name": "requestClose",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "enum TradeType",
+        "name": "_t",
+        "type": "uint8"
+      },
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "trader",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pairIndex",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "margin",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "long",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "leverage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sl",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct TradeBase",
+        "name": "_base",
+        "type": "tuple"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "callTarget",
+        "type": "address"
+      }
+    ],
+    "name": "requestOpenLimit",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "trader",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "pairIndex",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "margin",
+            "type": "uint256"
+          },
+          {
+            "internalType": "bool",
+            "name": "long",
+            "type": "bool"
+          },
+          {
+            "internalType": "uint256",
+            "name": "leverage",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "tp",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "sl",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct TradeBase",
+        "name": "_base",
+        "type": "tuple"
+      },
+      {
+        "internalType": "uint256",
+        "name": "marketPrice",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "slippage",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address",
+        "name": "callTarget",
+        "type": "address"
+      }
+    ],
+    "name": "requestOpenMarket",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reserveRate",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "reserveReceiver",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_tradingStorage",
+        "type": "address"
+      },
+      {
+        "internalType": "address",
+        "name": "_usdt",
+        "type": "address"
+      }
+    ],
+    "name": "setContract",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_forOpen",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_forClose",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_forCallback",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_gasLimit",
+        "type": "uint256"
+      }
+    ],
+    "name": "setNativeFeeForKeeper",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_liquidationP",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_spreadReductionP",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_maxMarketTradeOpenTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_tradeSwitch",
+        "type": "uint256"
+      }
+    ],
+    "name": "setParams",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "_receiver",
+        "type": "address"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_rate",
+        "type": "uint256"
+      }
+    ],
+    "name": "setReserve",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "spreadReductionP",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "enum CloseType",
+        "name": "_stop",
+        "type": "uint8"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "stopTrade",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "storageT",
+    "outputs": [
+      {
+        "internalType": "contract ITradingStorage",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "tradeSwitch",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "newOwner",
+        "type": "address"
+      }
+    ],
+    "name": "transferOwnership",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "_orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "_amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bool",
+        "name": "_isAdd",
+        "type": "bool"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "updateMargin",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      },
+      {
+        "internalType": "uint256",
+        "name": "limit",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "sl",
+        "type": "uint256"
+      }
+    ],
+    "name": "updateOpenRequest",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "orderId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "tp",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "sl",
+        "type": "uint256"
+      },
+      {
+        "internalType": "bytes[]",
+        "name": "updateData",
+        "type": "bytes[]"
+      }
+    ],
+    "name": "updateTPAndSL",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "usdt",
+    "outputs": [
+      {
+        "internalType": "address",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "vault",
+    "outputs": [
+      {
+        "internalType": "contract IVault",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

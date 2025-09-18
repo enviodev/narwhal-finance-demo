@@ -1,0 +1,32 @@
+# yaml-language-server: $schema=./node_modules/envio/evm.schema.json
+name: envio-indexer
+networks:
+- id: 10143
+  start_block: 0
+  contracts:
+  - name: Trading
+    address:
+    - 0x17642CE98f4ABfABcBb5e1A5d5825902CC311CEB
+    handler: src/EventHandlers.ts
+    events:
+    - event: Callback(address target, bool resut)
+    - event: CancelOpen(uint256 orderId)
+    - event: Close(uint256 orderId, uint256 closePrice, uint256 _closeMargin, int256 fundingFee, uint256 rolloverFee, uint256 closeFee, uint256 afterFee, uint8 s)
+    - event: ExecRequestClose(uint256 orderId, uint256 index, bool status)
+    - event: ExecRequestOpen(uint256 orderId, bool status)
+    - event: Initialized(uint8 version)
+    - event: Open(uint256 orderId, ((address,uint256,uint256,bool,uint256,uint256,uint256),uint256,uint256) t, uint256 fee)
+    - event: OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner)
+    - event: OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
+    - event: RequestClose(uint256 indexed orderId, uint256 indexed index, uint256 _closeMargin, uint256 requstTime)
+    - event: RequestOpen(uint256 indexed orderId, (uint8,(address,uint256,uint256,bool,uint256,uint256,uint256),address,uint256,uint256,uint256) _request)
+    - event: SetContract(address _tradingStorage, address _usdt)
+    - event: SetNativeFeeForKeeper(uint256 _forOpen, uint256 _forClose, uint256 _forCallback, uint256 _gasLimit)
+    - event: SetParams(uint256 _liquidationP, uint256 _spreadReductionP, uint256 _maxMarketTradeOpenTime, uint256 _tradeSwitch)
+    - event: SetReserve(address indexed _receiver, uint256 _rate)
+    - event: TradeClosed(uint256 orderId)
+    - event: UpdateMargin(uint256 orderId, uint256 amount, bool isAdd, uint256 margin, uint256 leverage)
+    - event: UpdateOpenRequest(uint256 orderId, uint256 limitPrice, uint256 tp, uint256 sl)
+    - event: UpdateTPAndSL(uint256 orderId, uint256 tp, uint256 sl)
+unordered_multichain_mode: true
+preload_handlers: true

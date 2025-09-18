@@ -1,0 +1,171 @@
+type TraderStats {
+  id: ID!
+  totalTrades: BigInt!
+  totalVolume: BigInt!
+  totalPnL: BigInt!
+  wins: BigInt!
+  draws: BigInt!
+  losses: BigInt!
+  winRate: BigInt!
+}
+
+type OrderToTrader {
+  id: ID!
+  traderAddress: String!
+  margin: BigInt!
+  openPrice: BigInt!
+  isLong: Boolean!
+  leverage: BigInt!
+}
+
+
+type Trading_Callback {
+  id: ID!
+  target: String!
+  resut: Boolean!
+}
+
+type Trading_CancelOpen {
+  id: ID!
+  orderId: BigInt!
+}
+
+type Trading_Close {
+  id: ID!
+  orderId: BigInt!
+  closePrice: BigInt!
+  _closeMargin: BigInt!
+  fundingFee: BigInt!
+  rolloverFee: BigInt!
+  closeFee: BigInt!
+  afterFee: BigInt!
+  s: BigInt!
+}
+
+type Trading_ExecRequestClose {
+  id: ID!
+  orderId: BigInt!
+  index: BigInt!
+  status: Boolean!
+}
+
+type Trading_ExecRequestOpen {
+  id: ID!
+  orderId: BigInt!
+  status: Boolean!
+}
+
+type Trading_Initialized {
+  id: ID!
+  version: BigInt!
+}
+
+type Trading_Open {
+  id: ID!
+  orderId: BigInt!
+  t_0_0: String!
+  t_0_1: BigInt!
+  t_0_2: BigInt!
+  t_0_3: Boolean!
+  t_0_4: BigInt!
+  t_0_5: BigInt!
+  t_0_6: BigInt!
+  t_1: BigInt!
+  t_2: BigInt!
+  fee: BigInt!
+}
+
+type Trading_OwnershipTransferStarted {
+  id: ID!
+  previousOwner: String!
+  newOwner: String!
+}
+
+type Trading_OwnershipTransferred {
+  id: ID!
+  previousOwner: String!
+  newOwner: String!
+}
+
+type Trading_RequestClose {
+  id: ID!
+  orderId: BigInt!
+  index: BigInt!
+  _closeMargin: BigInt!
+  requstTime: BigInt!
+}
+
+type Trading_RequestOpen {
+  id: ID!
+  orderId: BigInt!
+  _request_0: BigInt!
+  _request_1_0: String!
+  _request_1_1: BigInt!
+  _request_1_2: BigInt!
+  _request_1_3: Boolean!
+  _request_1_4: BigInt!
+  _request_1_5: BigInt!
+  _request_1_6: BigInt!
+  _request_2: String!
+  _request_3: BigInt!
+  _request_4: BigInt!
+  _request_5: BigInt!
+}
+
+type Trading_SetContract {
+  id: ID!
+  _tradingStorage: String!
+  _usdt: String!
+}
+
+type Trading_SetNativeFeeForKeeper {
+  id: ID!
+  _forOpen: BigInt!
+  _forClose: BigInt!
+  _forCallback: BigInt!
+  _gasLimit: BigInt!
+}
+
+type Trading_SetParams {
+  id: ID!
+  _liquidationP: BigInt!
+  _spreadReductionP: BigInt!
+  _maxMarketTradeOpenTime: BigInt!
+  _tradeSwitch: BigInt!
+}
+
+type Trading_SetReserve {
+  id: ID!
+  _receiver: String!
+  _rate: BigInt!
+}
+
+type Trading_TradeClosed {
+  id: ID!
+  orderId: BigInt!
+}
+
+type Trading_UpdateMargin {
+  id: ID!
+  orderId: BigInt!
+  amount: BigInt!
+  isAdd: Boolean!
+  margin: BigInt!
+  leverage: BigInt!
+}
+
+type Trading_UpdateOpenRequest {
+  id: ID!
+  orderId: BigInt!
+  limitPrice: BigInt!
+  tp: BigInt!
+  sl: BigInt!
+}
+
+type Trading_UpdateTPAndSL {
+  id: ID!
+  orderId: BigInt!
+  tp: BigInt!
+  sl: BigInt!
+}
+
